@@ -24,6 +24,7 @@ on:
           - 13_mtflute
           - 14_laragram
           - 15_miniproto
+          - 16_cbgram
         required: true
 
 permissions:
@@ -473,6 +474,33 @@ jobs:
           cd 15_miniproto/
           uv sync --locked
           uv run --no-sync python main.py
+
+          cd ../
+          ./_commit.sh
+
+  # 16_cbgram
+  cbgram:
+    if: github.event.inputs.library == '16_cbgram' || github.event.inputs.library == 'All'
+    runs-on: ubuntu-latest
+    env:
+      API_ID: ${{ secrets.API_ID }}
+      API_HASH: ${{ secrets.API_HASH }}
+      AUTH_STRING: ${{ secrets.AUTH_STRING_16 }}
+      MESSAGE_LINK: ${{ secrets.MESSAGE_LINK }}
+      CHAT_ID: ${{ secrets.CHAT_ID }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - run: python -m pip install poetry
+
+      - run: |
+          cd 16_cbgram/
+          poetry install
+          poetry run python main.py
 
           cd ../
           ./_commit.sh
