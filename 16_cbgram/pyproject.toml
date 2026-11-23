@@ -1,0 +1,16 @@
+[project]
+name = "16-cbgram"
+version = "0.1.0"
+description = ""
+requires-python = ">=3.11,<4.0"
+dependencies = [
+    "cbcrypto @ https://github.com/abhiadi23/cbcrypto/releases/download/v0.5.1/cbcrypto-0.5.1-cp38-abi3-manylinux_2_28_x86_64.whl",
+    "cbgram[fast] @ git+https://github.com/abhiadi23/cbgram.git@main",
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
